@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>名称:</strong>
+  <%= @cost.name %>
+</p>
+
+<p>
+  <strong>价格:</strong>
+  <%= @cost.price %>
+</p>
+
+<%= link_to '编辑', edit_cost_path(@cost) %> |
+<%= link_to '返回', costs_path %>

@@ -1,0 +1,61 @@
+<%= form_for(@student) do |f| %>
+    <% if @student.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+            <ul>
+                <% @student.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= f.label "姓名" %><br>
+        <%= f.text_field :name %>
+    </div>
+    <div class="field">
+        <%= f.label "性别" %><br>
+        <%= f.text_field :gender %>
+    </div>
+    <div class="field">
+        <%= f.label "电话" %><br>
+        <%= f.text_field :mobile %>
+    </div>
+    <div class="field">
+        <%= f.label "父母姓名" %><br>
+        <%= f.text_field :parent_name %>
+    </div>
+    <div class="field">
+        <%= f.label "邮箱地址" %><br>
+        <%= f.text_field :mail %>
+    </div>
+    <div class="field">
+        <%= f.label "生日" %><br>
+        <%= f.text_field :birthday %>
+    </div>
+    <div class="field">
+        <%= f.label "舞蹈登记" %><br>
+        <%= f.text_field :level %>
+    </div>
+    <div class="field">
+        <%= f.label "会员卡号" %><br>
+        <%= f.text_field :card_number %>
+    </div>
+    <div class="field">
+        <%= f.label "家庭住址" %><br>
+        <%= f.text_field :address %>
+    </div>
+    <div class="field">
+        <%= f.label "活动情况" %><br>
+        <%= f.select :active, [['在读', true], ['已离校', false]] %>
+    </div>
+    <div class="field">
+        <%= f.label "收费请况" %><br>
+        <%= f.select :cost_id, options_for_select(Cost.all.map{|cost| ["#{cost.name}:#{cost.price}", cost.id] } ) %>
+    </div>
+    <div class="actions">
+    <%= f.submit %>
+    </div>
+<% end %>

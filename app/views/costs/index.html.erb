@@ -1,0 +1,31 @@
+<h1>收费分类</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+		<th>收费名称</th>
+		<th>价格</th>
+		<th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @costs.each do |cost| %>
+		<tr>
+			<td><%= cost.name %></td>
+			<td><%= cost.price %></td>
+			<td>
+				<%= link_to '编辑', edit_cost_path(cost), :class => 'btn btn-mini' %>
+				<%= link_to '删除', cost, method: :delete, :class => 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' } %>
+			</td>
+		</tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '新建', new_cost_path %>
+
+<div class='clearfix'>
+  <div class="pull-right" style="margin-left: 5px;margin-top: -2px;">
+    <%= will_paginate @costs %>
+  </div>
+</div><!--span10 -->

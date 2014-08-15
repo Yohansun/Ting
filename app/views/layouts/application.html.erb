@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ting舞蹈工作室</title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+</head>
+<body>
+	<% if user_signed_in? %>
+		<li>
+			<%= link_to('登出', destroy_user_session_path, :method => :delete) %>        
+		</li>
+	<% else %>
+		<li>
+			<%= link_to('登录', new_user_session_path)  %>  
+		</li>
+	<% end %>
+	<div class="container">
+		<% if user_signed_in? %>
+			<ul class="nav nav-pills" role="tablist">
+				<li role="presentation" class=<%= 'active' if params[:controller] == "students" %>><a href=<%= students_path %>>学生概况</a></li>
+				<li role="presentation" class=<%= 'active' if params[:controller] == "costs" %>><a href=<%= costs_path %>>收费分类</a></li>
+			</ul>
+		<% end %>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<%= yield %>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

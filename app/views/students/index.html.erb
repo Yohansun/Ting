@@ -1,0 +1,75 @@
+<h1>Ting舞蹈工作室学生概况</h1> 
+<form action="/students" method="get" id="search_form">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <div class="dropdown">
+                <%=select_tag :where, options_for_select([["选择筛选条件",""],
+                  ["ID","id"],
+                  ["学生姓名","name"],
+                  ["会员卡号","card_number"],
+                  ["舞蹈等级","level"],], params[:where]), :style=>"margin-bottom: -1px;"%>
+                
+                <input type="text" class="form-control" name="keyword"  style="margin-bottom: -1px;">
+                <input type="submit" value="Go!" class="form-control btn-warning" />
+            </div><!-- /btn-group --><!-- 
+            <input type="text" class="form-control">
+            <span class="input-group-addon">ID:</span><input type="text" class="form-control" name="where[id]">
+            <span class="input-group-addon">学生姓名:</span><input type="text" class="form-control" name="where[name]">
+            <span class="input-group-addon">会员卡号:</span><input type="text" class="form-control" name="where[card_number]">
+            <span class="input-group-addon">舞蹈等级:</span><input type="text" class="form-control" name="where[level]">
+            <span class="input-group-addon">收费情况:</span><input type="text" class="form-control" name="where[cost_id]">
+            <input type="submit" value="搜索" class="form-control" style="margin-bottom: 12px;" /> -->
+        </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>电话</th>
+            <th>父母姓名</th>
+            <th>邮箱地址</th>
+            <th>生日</th>
+            <th>舞蹈等级</th>
+            <th>会员卡号</th>
+            <th>家庭住址</th>
+            <th>当前状态</th>
+            <th>费用情况</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if @students.present? %>
+            <% @students.each do |student| %>
+              <tr>
+                <td><%= student.id %></td>
+                <td><%= link_to student.name, student_path(student) %></td>
+                <td><%= student.try(:mobile) %></td>
+                <td><%= student.parent_name ? student.try(:parent_name) : "未登记父母信息" %></td>
+                <td><%= student.try(:mail) %></td>
+                <td><%= student.try(:birthday) %>
+                <td><%= student.try(:level) %>
+                <td><%= student.try(:card_number) %>
+                <td><%= student.try(:address) %>
+                <td><%= student.active? ? "在读" : "已离校" %>
+                <td><%= "#{Cost.find(student.cost_id).name }:#{Cost.find(student.cost_id).price }" if student.cost_id %>
+                <td>
+                  <%= link_to '编辑', edit_student_path(student), :class => 'btn btn-mini' %>
+                  <%= link_to '删除', student_path(student), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+                </td>
+              </tr>
+            <% end %>
+        <% end %>
+    </tbody>
+</table>
+
+<%= link_to '新建', new_student_path, :class => 'btn btn-primary' %>
+
+
+<div class='clearfix'>
+  <div class="pull-right" style="margin-left: 5px;margin-top: -2px;">
+    <%= will_paginate @students %>
+  </div>
+</div><!--span10 -->

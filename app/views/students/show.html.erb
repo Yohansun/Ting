@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+<ul class="list-group">
+  <li class="list-group-item list-group-item-success"><%= @student.name %></li>
+  <li class="list-group-item list-group-item-info"><%= @student.gender %></li>
+  <li class="list-group-item list-group-item-warning"><%= @student.address %></li>
+  <li class="list-group-item list-group-item-danger"><%= @student.mobile %></li>
+  <li class="list-group-item list-group-item-success"><%= @student.parent_name %></li>
+  <li class="list-group-item list-group-item-info"><%= @student.gender %></li>
+  <li class="list-group-item list-group-item-warning"><%= @student.birthday %></li>
+</ul>
+
+<%= link_to '编辑', edit_student_path(@student) %> |
+<%= link_to '返回', students_path %>
