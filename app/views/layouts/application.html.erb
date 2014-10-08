@@ -21,6 +21,8 @@
 			<ul class="nav nav-pills" role="tablist">
 				<li role="presentation" class=<%= 'active' if params[:controller] == "students" %>><a href=<%= students_path %>>学生概况</a></li>
 				<li role="presentation" class=<%= 'active' if params[:controller] == "costs" %>><a href=<%= costs_path %>>收费分类</a></li>
+				<li role="presentation" class=<%= 'active' if params[:controller] == "test_courses" %>><a href=<%= test_courses_path %>>试课概况</a></li>
+				<li role="presentation" class=<%= 'active' if params[:controller] == "teacher_signs" %>><a href=<%= teacher_signs_path %>>教师签到</a></li>
 			</ul>
 		<% end %>
 		<div class="panel panel-default">
@@ -28,6 +30,9 @@
 				<%= yield %>
 			</div>
 		</div>
+		<footer class="page_footer" style="margin-top: 200px;">
+	     	<p style="text-align:center;">© 奥亚瑞元/yohansun 2014</p>
+	    </footer>
 	</div>
 </body>
 </html>

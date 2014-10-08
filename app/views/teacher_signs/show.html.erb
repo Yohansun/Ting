@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Teacher name:</strong>
+  <%= @teacher_sign.teacher_name %>
+</p>
+
+<p>
+  <strong>Course name:</strong>
+  <%= @teacher_sign.course_name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @teacher_sign.date %>
+</p>
+
+<%= link_to 'Edit', edit_teacher_sign_path(@teacher_sign) %> |
+<%= link_to 'Back', teacher_signs_path %>

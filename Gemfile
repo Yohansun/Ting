@@ -14,6 +14,7 @@ gem "less-rails"
 gem 'twitter-bootstrap-rails'
 gem 'will_paginate'
 gem 'devise'
+gem 'to_xls-rails'
 
 
 group :doc do

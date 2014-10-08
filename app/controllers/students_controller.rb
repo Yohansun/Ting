@@ -62,6 +62,15 @@ class StudentsController < ApplicationController
     end
   end
 
+  def export
+    @students = Student.all
+    if @students
+      send_data(@students.to_xls, :type => "text/xls; charset=utf-8;; header=present", :filename => "students.xls")
+    else
+      render nothing: true, status: 404
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_student

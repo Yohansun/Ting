@@ -1,0 +1,32 @@
+<h1>教师签到表</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>教师姓名</th>
+      <th>课程名称</th>
+      <th>签到日期</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teacher_signs.each do |teacher_sign| %>
+      <tr>
+        <td><%= teacher_sign.teacher_name %></td>
+        <td><%= teacher_sign.course_name %></td>
+        <td><%= teacher_sign.date.to_s(:db) %></td>
+        <td><%= link_to '展示', teacher_sign %></td>
+        <td><%= link_to '编辑', edit_teacher_sign_path(teacher_sign) %></td>
+        <td><%= link_to '删除', teacher_sign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '创建', new_teacher_sign_path, :class => 'btn btn-primary' %>
+<%= link_to '导出', export_teacher_signs_path, :class => 'btn btn-primary' %>

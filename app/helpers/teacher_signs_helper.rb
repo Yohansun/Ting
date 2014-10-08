@@ -1,0 +1,2 @@
+module TeacherSignsHelper
+end

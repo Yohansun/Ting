@@ -1,0 +1,30 @@
+<h1>试课表</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>学生姓名</th>
+      <th>试课名称</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @test_courses.each do |test_course| %>
+      <tr>
+        <td><%= test_course.student_name %></td>
+        <td><%= test_course.course_name %></td>
+        <td><%= link_to '展示', test_course %></td>
+        <td><%= link_to '编辑', edit_test_course_path(test_course) %></td>
+        <td><%= link_to '删除', test_course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '创建', new_test_course_path, :class => 'btn btn-primary' %>
+<%= link_to '导出', export_test_courses_path, :class => 'btn btn-primary' %>

@@ -1,0 +1,2 @@
+module TestCoursesHelper
+end
